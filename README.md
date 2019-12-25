@@ -1,6 +1,6 @@
-# wp-plugin-starter-kit
+# wp-plugin-starter-kit-vuejs
 
-Starter kit for building WordPress plugin, with namespaces through composer's autoloader, optionally using gulp tasks, scss and source js.
+Starter kit for building WordPress plugin bundled with VueJS, with namespaces through composer's autoloader, optionally using gulp tasks, scss and source js.
 
 ### Plugin setup
 
@@ -8,8 +8,8 @@ Starter kit for building WordPress plugin, with namespaces through composer's au
 #####Using composer
 
 Plugin starter kit has generated autoload through composer. 
-If you want change the top-level namespace name from `WPPluginStarterKit` to something else, 
-or if you change the base for your plugin's classes from `src`, run `composer dump-autoload`
+If you want change the top-level namespace name from `WPPluginNameVueJS` to something else, 
+or if you change the base for your plugin's classes from `includes`, run `composer dump-autoload`
   
 To install new composer packages, or update existing, see composer
 
