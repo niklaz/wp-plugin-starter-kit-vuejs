@@ -20,6 +20,11 @@ class Plugin {
 		$this->pluginPath = WP_PLUGIN_NAME_VUEJS_PATH;
 		$this->pluginVersion = WP_PLUGIN_NAME_VUEJS_VERSION;
 
+		if( 'production' !== $this->environment ){
+			$this->pluginVersion = $this->pluginVersion . '_' . uniqid(); //prevent from caching when in development mode
+		}
+
+
 	}
 
 	public function run(){
@@ -29,7 +34,7 @@ class Plugin {
 
 
 	public function actions(){
-		add_action( 'enqueue_scripts', [ $this, 'enqueue' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue' ] );
 	}
 	public function adminActions(){
 		add_action( 'admin_enqueue_scripts', [ $this, 'enqueueAdmin' ] );
@@ -59,8 +64,16 @@ class Plugin {
 	public function enqueueAdmin(){
 		if( 'production' !== $this->environment ){
 			wp_enqueue_script( $this->handlePrefix . '_admin_script', $this->pluginPath . 'assets/js/admin.js', [], $this->pluginVersion );
+
+			wp_register_style( $this->handlePrefix . '_admin_style', $this->pluginPath . 'assets/css/admin.css', false, $this->pluginVersion );
+
+			wp_enqueue_style( $this->handlePrefix . '_admin_style' );
 		}else{
 			wp_enqueue_script( $this->handlePrefix . '_admin_script', $this->pluginPath . 'assets/js/admin.min.js', [], $this->pluginVersion ); //todo minify assets
+
+			wp_register_style( $this->handlePrefix . '_admin_style', $this->pluginPath . 'assets/css/admin.min.css', false, $this->pluginVersion );
+
+			wp_enqueue_style( $this->handlePrefix . '_admin_style' );
 		}
 
 	}

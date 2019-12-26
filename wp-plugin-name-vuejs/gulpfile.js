@@ -114,7 +114,7 @@ gulp.task(
 // Run:
 // gulp cssnano
 // Minifies CSS files
-gulp.task('cssnano', function() {
+/*gulp.task('cssnano', function() {
     return gulp
         .src(paths.css + '/main.css')
         .pipe(sourcemaps.init({ loadMaps: true }))
@@ -130,11 +130,11 @@ gulp.task('cssnano', function() {
         .pipe(cssnano({ discardComments: { removeAll: true } }))
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest(paths.css));
-});
+});*/
 
 gulp.task('minifycss', function() {
     return gulp
-        .src(`${paths.css}/main.css`)
+        .src([`${paths.css}/main.css`, `${paths.css}/admin.css`])
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(cleanCSS({ compatibility: '*' }))
         .pipe(

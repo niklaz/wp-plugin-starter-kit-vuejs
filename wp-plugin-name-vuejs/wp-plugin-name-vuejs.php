@@ -25,7 +25,7 @@ define( 'WP_PLUGIN_NAME_VUEJS_DIR_PATH', plugin_dir_path(__FILE__ ) );
 define( 'WP_PLUGIN_NAME_VUEJS_PATH', plugin_dir_url(__FILE__ ) );
 define( 'WP_PLUGIN_NAME_VUEJS_MAIN_FILE', __FILE__  );
 define( 'WP_PLUGIN_NAME_VUEJS_VERSION', '0.1.0' );
-define( 'WP_PLUGIN_NAME_VUEJS_ENV', 'development' ); //set production to get minified assets, must minify assets first!
+define( 'WP_PLUGIN_NAME_VUEJS_ENV', 'production' ); //set production to get minified assets, must minify assets first!
 define( 'WP_PLUGIN_NAME_VUEJS_HANDLE_PREFIX', 'wp_plugin_name_vuejs' );
 
 

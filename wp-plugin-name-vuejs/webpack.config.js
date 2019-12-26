@@ -1,9 +1,19 @@
-var webpack = require('webpack')
-
+const webpack = require('webpack')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 module.exports = {
+    optimization: {
+        minimize: true,
+        minimizer: [new UglifyJsPlugin({
+            include: /\.min\.js$/
+        })]
+    },
+    mode: 'development',
+    devtool: 'source-map',
     entry: {
-        main: './src/js/main.js',
-        admin: './src/js/admin.js'
+        "main": './src/js/main.js',
+        "admin": './src/js/admin.js',
+        "main.min": './src/js/main.js',
+        "admin.min": './src/js/admin.js'
     },
     output: {
         path: "/assets/js/",
@@ -12,32 +22,54 @@ module.exports = {
     },
     watch: true,
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.js$/,
                 // excluding some local linked packages.
                 // for normal use cases only node_modules is needed.
                 exclude: /node_modules|vue\/src|vue-router\//,
-                loader: 'babel'
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                      /*  presets: ['@babel/preset-env'],
+                        plugins: ['@babel/plugin-proposal-object-rest-spread']*/
+                        // presets: ['es2015'], //,' @babel/preset-env'
+                        presets: ['@babel/preset-env'],
+                        plugins: ['@babel/plugin-transform-runtime']
+                    }
+                }
+
             },
             {
                 test: /\.scss$/,
-                loaders: ['style', 'css', 'sass']
+                use: [
+                    {
+                        loader: "style",
+                    },
+                    {
+                        loader: "css",
+                    },
+                    {
+                        loader: "sass",
+                    }
+                ],
             },
             {
                 test: /\.vue$/,
-                loader: 'vue'
+                use: [
+                    {
+                        loader: 'vue',
+                    }
+                ]
+
             }
         ]
     },
-    babel: {
-        presets: ['es2015'], //,'@babel/preset-env'
-        plugins: ['transform-runtime']
-    },
     resolve: {
-        modulesDirectories: ['node_modules'],
+        modules: ['node_modules'],
         alias: {
             'vue$': 'vue/dist/vue.common.js',
         }
-    }
+    },
+
 }
