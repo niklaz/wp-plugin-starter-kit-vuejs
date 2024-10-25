@@ -43,7 +43,7 @@
     "run-sequence": "^2.2.1",
     "snazzy-info-window": "^1.1.1",
     "undescores-for-npm": "^1.0.0",
-    "vue": "^2.6.11",
+    "vue": "^3.0.0",
     "vue-resource": "^1.5.1",
     "vueify": "^9.4.1"
   },
